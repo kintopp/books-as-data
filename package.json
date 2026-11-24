@@ -64,7 +64,7 @@
   "devDependencies": {
     "@anthropic-ai/mcpb": "2.1.2",
     "@eslint/js": "10.0.1",
-    "eslint": "10.6.0",
+    "eslint": "10.15.0",
     "globals": "17.7.0",
     "graphql": "16.14.2",
     "railway": "^3.17.0"
