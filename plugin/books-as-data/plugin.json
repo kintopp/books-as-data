@@ -1,0 +1,32 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "books-as-data",
+  "version": "0.30.2",
+  "description": "Search Books as Data, the joint platform of four Swiss libraries (UB Bern, UB Basel, ZHB Luzern, ZB Zürich): over 750,000 titles from 1700–1900, mostly German, with full text, page images and fold-out plates.",
+  "author": {
+    "name": "RISE (University of Basel)",
+    "url": "https://rise.unibas.ch"
+  },
+  "homepage": "https://github.com/kintopp/books-as-data",
+  "repository": "https://github.com/kintopp/books-as-data",
+  "license": "MIT",
+  "keywords": [
+    "books-as-data",
+    "digitised-books",
+    "ocr",
+    "iiif",
+    "libraries",
+    "digital-humanities"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Books as Data",
+        "shortDescription": "Search historical books from Swiss libraries.",
+        "developerName": "RISE (University of Basel)",
+        "category": "Productivity",
+        "websiteURL": "https://github.com/kintopp/books-as-data"
+      }
+    }
+  }
+}

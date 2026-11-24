@@ -1,0 +1,140 @@
+{
+  "manifest_version": "0.3",
+  "name": "books-as-data",
+  "display_name": "Books as Data",
+  "description": "An AI-assisted natural language interface for exploring \"Books as Data\", the digitised-books platform of four Swiss libraries.",
+  "long_description": "An open-source Model Context Protocol (MCP) server for the \"Books as Data\" platform. It provides natural language access for exploring, searching, and retrieving 750k+ titles from Swiss libraries, 1700–1900 — over a million records, under half with OCR full text. Ten tools cover metadata and keyword search, full record details, breakdowns by facet, exact two-dimension facet cross-tabs, paged OCR full-text retrieval, query autocompletion, AI-based IIIF-image analysis, per-page OCR text with layout coordinates, locating a phrase across a scanned volume's pages, plus the research guidance itself, one topic per call.",
+  "author": {
+    "name": "Arno Bosse",
+    "url": "https://github.com/kintopp"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/kintopp/books-as-data",
+  "documentation": "https://github.com/kintopp/books-as-data#readme",
+  "support": "https://github.com/kintopp/books-as-data/issues",
+  "keywords": [
+    "mcp",
+    "digital-library",
+    "digitised-books",
+    "graphql",
+    "elasticsearch",
+    "iiif",
+    "ocr",
+    "books-as-data",
+    "rdv",
+    "swiss-books"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "src/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/src/index.js"
+      ],
+      "env": {
+        "SGBR_ACCESS_TOKEN": "${user_config.access_token}",
+        "SGBR_GRAPHQL_ENDPOINT": "${user_config.graphql_endpoint}",
+        "SGBR_FULLTEXT_ENDPOINT": "${user_config.fulltext_endpoint}",
+        "SGBR_IMAGE_ENDPOINT": "${user_config.image_endpoint}",
+        "SGBR_OCR_ENDPOINT": "${user_config.ocr_endpoint}",
+        "SGBR_ENTRY_POINT": "mcpb"
+      }
+    }
+  },
+  "tools_generated": false,
+  "tools": [
+    {
+      "name": "sgbr_search",
+      "description": "Search full text, catalogue metadata and AI plate descriptions, narrowed or excluded by facet; returns compact ranked hits with OCR snippets."
+    },
+    {
+      "name": "sgbr_get_record",
+      "description": "Fetch a full record by id: CSL-JSON citation, IIIF manifest, full-text links, GND/GeoNames authorities."
+    },
+    {
+      "name": "sgbr_facet_values",
+      "description": "Break a query down by facet: library, language, year, author, genre, topic and more."
+    },
+    {
+      "name": "sgbr_facet_breakdown",
+      "description": "Cross-tabulate two facets into an exact grid of record counts, e.g. language x genre."
+    },
+    {
+      "name": "sgbr_get_fulltext",
+      "description": "Read a scanned item's OCR full text, paged (expect OCR noise on 1700–1900 Fraktur)."
+    },
+    {
+      "name": "sgbr_autocomplete",
+      "description": "Turn a partial term into title / author / subject search phrases."
+    },
+    {
+      "name": "sgbr_inspect_image",
+      "description": "Fetch a IIIF page image (map, plate, illustration, cover) for direct visual inspection — whole page or a percent-region crop."
+    },
+    {
+      "name": "sgbr_get_page_ocr",
+      "description": "Fetch one page's OCR text and layout regions (line/word/block boxes with pixel + percent coordinates) from IIIF hOCR — locate text on a page and derive region_pct crops for sgbr_inspect_image."
+    },
+    {
+      "name": "sgbr_locate_text",
+      "description": "Find which scanned page(s) contain a phrase — returns the page, a context snippet, and line/word regions (bbox_px + region_pct for sgbr_inspect_image); searches one volume and lists sibling volumes for multivolume works."
+    },
+    {
+      "name": "sgbr_guide",
+      "description": "How to search Books as Data well, one topic at a time: query syntax traps, historic spelling, OCR, facets, citing pages, fold-out plates. Read it before the first search."
+    }
+  ],
+  "user_config": {
+    "access_token": {
+      "type": "string",
+      "title": "Access token (optional)",
+      "description": "Bearer token for ACL-restricted records. Leave blank for anonymous access to all public content.",
+      "sensitive": true,
+      "required": false,
+      "default": ""
+    },
+    "graphql_endpoint": {
+      "type": "string",
+      "title": "GraphQL endpoint override (optional)",
+      "description": "Alternative RDV GraphQL endpoint URL. Leave blank to use the built-in default; set when the API moves hosts.",
+      "sensitive": false,
+      "required": false,
+      "default": ""
+    },
+    "fulltext_endpoint": {
+      "type": "string",
+      "title": "Full-text endpoint override (optional)",
+      "description": "Alternative OCR full-text REST base URL. Leave blank to use the built-in default; set when the API moves hosts.",
+      "sensitive": false,
+      "required": false,
+      "default": ""
+    },
+    "image_endpoint": {
+      "type": "string",
+      "title": "IIIF image endpoint override (optional)",
+      "description": "Alternative IIIF Image API base URL for page images. Leave blank to use the built-in default; set when the API moves hosts.",
+      "sensitive": false,
+      "required": false,
+      "default": ""
+    },
+    "ocr_endpoint": {
+      "type": "string",
+      "title": "OCR endpoint override (optional)",
+      "description": "Alternative mediaserver base URL for per-page hOCR/plain-text OCR assets. Leave blank to use the built-in default; set when the mediaserver moves hosts.",
+      "sensitive": false,
+      "required": false,
+      "default": ""
+    }
+  },
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=24.0.0 <25"
+    }
+  }
+}

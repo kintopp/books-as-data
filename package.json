@@ -1,0 +1,78 @@
+{
+  "name": "ub-sgbr-mcp",
+  "version": "0.30.2",
+  "private": true,
+  "description": "MCP server for the \"Books as Data\" (RDV) GraphQL search platform of four Swiss libraries",
+  "license": "MIT",
+  "author": {
+    "name": "Arno Bosse",
+    "url": "https://github.com/kintopp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kintopp/books-as-data.git"
+  },
+  "homepage": "https://github.com/kintopp/books-as-data#readme",
+  "bugs": {
+    "url": "https://github.com/kintopp/books-as-data/issues"
+  },
+  "keywords": [
+    "mcp",
+    "digital-library",
+    "digitised-books",
+    "graphql",
+    "iiif",
+    "ocr",
+    "books-as-data"
+  ],
+  "files": [
+    "src/",
+    "scripts/cli.mjs",
+    "manifest.json"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=24.22.1 <25"
+  },
+  "bin": {
+    "ub-sgbr-mcp": "src/index.js",
+    "bbad": "scripts/cli.mjs"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "serve": "node src/http.js",
+    "cli": "node scripts/cli.mjs",
+    "test": "node --test \"test/*.test.js\"",
+    "test:cli": "node --test test/cli.test.js",
+    "test:live": "SGBR_LIVE=1 node --test \"test/*.test.js\"",
+    "test:pack": "node scripts/pack-smoke.mjs",
+    "footprint": "node scripts/footprint.mjs",
+    "lint": "eslint .",
+    "build:mcpb": "node scripts/build-mcpb.mjs",
+    "build:skill": "node scripts/build-skill.mjs",
+    "build:docs": "node scripts/build-docs.mjs",
+    "inspector": "npx @modelcontextprotocol/inspector node src/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "~2.4.0",
+    "zod": "4.6.7"
+  },
+  "optionalDependencies": {
+    "@modelcontextprotocol/client": "~2.4.0",
+    "@modelcontextprotocol/node": "~2.1.2"
+  },
+  "devDependencies": {
+    "@anthropic-ai/mcpb": "2.1.2",
+    "@eslint/js": "10.0.1",
+    "eslint": "10.6.0",
+    "globals": "17.7.0",
+    "graphql": "16.14.2",
+    "railway": "^3.17.0"
+  },
+  "overrides": {
+    "tmp": "^0.2.7",
+    "@anthropic-ai/mcpb": {
+      "zod": "$zod"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "Books-as-Data": {
+      "type": "http",
+      "url": "https://books-as-data-test.up.railway.app/mcp"
+    }
+  }
+}

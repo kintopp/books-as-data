@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      # Offline only. The live API tests (SGBR_LIVE=1) are deliberately NOT run
+      # here, and this is a settled decision rather than a TODO: the APIs are
+      # public, but the library has not yet decided whether and how to promote
+      # MCP access to its endpoints, so no automated MCP traffic runs against them
+      # until it has — no secrets, no scheduled or manual-dispatch live workflow.
+      #
+      # Accepted cost, stated plainly so nobody has to rediscover it: backend-
+      # contract drift has NO continuous detection. The compensating habit is
+      # `npm run test:live`, run locally before releases and after any backend-host
+      # change (see CLAUDE.md). Please don't "fix" this gap by wiring the host in.
+      - run: npm test
+      # Prove the Claude Desktop bundle still packs (manifest validity + staging),
+      # so a packaging break surfaces here, not on release day.
+      - run: npm run build:mcpb
+
+  # Separate job on purpose. `npm test` is OFFLINE by contract, and this one must
+  # resolve @modelcontextprotocol/* from the registry to install the tarball for
+  # real — so it cannot live in that suite without breaking the invariant.
+  # test/packaging.test.js still guards the same drift statically (offline, in
+  # milliseconds, and it fails earlier); this proves the actual deliverable
+  # installs and both bins launch. Runs after build:mcpb in the same checkout so
+  # the .mcpb payload boundary can be read from the real archive.
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build:mcpb
+      - run: npm run test:pack
