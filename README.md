@@ -14,19 +14,32 @@ The sample [research-scenarios](docs/research-scenarios.md) are multilingual pro
 
 ### Hosted (Streamable HTTP)
 
-The easiest way to start is with [claude.ai](https://claude.ai) or [Claude Desktop](https://claude.com/download). Add the hosted server to Claude as a [custom connector](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp) with this URL:
+The easiest way to start is to install the Books as Data plugin. It adds the hosted server as a connector, together with a short skill that tells the AI assistant how to use it. The server needs no account and no sign-in.
+
+**Claude** ([claude.ai](https://claude.ai), or the Claude desktop app):
+
+1. Download [`books-as-data-claude.zip`](https://github.com/kintopp/books-as-data/raw/refs/heads/main/plugin/books-as-data-claude.zip).
+2. In Claude, go to _Customize_ → _Plugins_ → _Add_ → _Upload plugin_ and choose the file.
+3. Open the plugin, go to its _Connectors_ tab, and add the "Books-as-Data" connector.
+4. If you like, set the permissions for its tools in _Customize_ → _Connectors_, for example to "Always allow". All tools are read only.
+
+A free Claude account allows only one custom connector, and the plugin's connector counts as one. To make room for it, remove (not just disable) any other custom connector in _Customize_ → _Connectors_ first. Anthropic's [plugin instructions](https://claude.com/docs/plugins/overview#install-a-plugin) give more details.
+
+**ChatGPT** (desktop app):
+
+1. Download [`books-as-data-chatgpt.zip`](https://github.com/kintopp/books-as-data/raw/refs/heads/main/plugin/books-as-data-chatgpt.zip).
+2. In the ChatGPT desktop app, go to _Settings_ → _Plugins_ → _Add_ and choose the file.
+3. If ChatGPT asks you to connect the plugin's app, select _Connect_. No sign-in is needed.
+
+**Other AI clients:** add the hosted server as a remote MCP server (often called a "custom connector") with this URL, and leave the authentication settings empty:
 
 ```
 https://books-as-data-test.up.railway.app/mcp
 ```
 
-1. Go to _Settings_ → _Customize_ → _Connectors_ → _Add custom connector_.
-2. Give the connector a name, such as "Books as Data", and paste the URL into the _Remote MCP Server URL_ field. The server needs no authentication, so leave those settings empty.
-3. If you like, set the permissions for its tools, for example to "Always allow". All tools are read only.
+See your client's own documentation for where to enter it.
 
-Anthropic's [instructions](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp) give more details. For other LLM clients, please see their respective documentation.
-
-The hosted server needs no account, and every tool reads the public books-as-data.ch services. To host your own instance, see [docs/deploy.md](docs/deploy.md).
+Every tool reads the public books-as-data.ch services. To host your own instance, see [docs/deploy.md](docs/deploy.md).
 
 ### Local (stdio)
 
@@ -108,7 +121,7 @@ See [tool descriptions and parameters](docs/tools.md) for the description of eac
 
 The research guidance (which tool to choose for a given question type, how to combine searches, important metadata distinctions, and known limitations) is served by the server itself through `sgbr_guide`, so every client always receives the current version.
 
-The [skill](skill/) is optional: a `SKILL.md`, zipped in a `.skill` file (with a `.skill.zip` copy for clients and browsers that only accept `.zip`), that sends the model to `sgbr_guide`. If you installed an earlier version of the Books as Data skill, which held a full copy of the guidance, please uninstall it.
+The plugins above already include the skill. On its own, the [skill](skill/) is optional: a `SKILL.md`, zipped in a `.skill` file (with a `.skill.zip` copy for clients and browsers that only accept `.zip`), that sends the model to `sgbr_guide`. If you installed an earlier version of the Books as Data skill, which held a full copy of the guidance, please uninstall it.
 
 ## Architecture overview
 
