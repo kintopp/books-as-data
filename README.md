@@ -2,7 +2,7 @@
 
 [![MCP Protocol](https://img.shields.io/badge/MCP_Protocol-2026--07--28-blue?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzIi8+PC9zdmc+)](https://modelcontextprotocol.io/specification/2026-07-28) [![MCP SDK](https://img.shields.io/badge/MCP_SDK-v2-blue?logo=npm&logoColor=white)](https://www.npmjs.com/package/@modelcontextprotocol/server)
 
-A pilot [Model Context Protocol](https://modelcontextprotocol.io) server that permits LLM-assisted natural language search and exploration of [*Books as Data*](https://books-as-data.ch/en), the digitised-books platform of four Swiss libraries (UB Bern, UB Basel, ZHB Luzern and ZB Zürich), through its GraphQL API.
+A pilot [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that permits LLM-assisted natural language search and exploration of [*Books as Data*](https://books-as-data.ch/en), the digitised-books platform of four Swiss libraries (UB Bern, UB Basel, ZHB Luzern and ZB Zürich), through its GraphQL API.
 
 > This MCP server was developed by the [Research and Infrastructure Support](https://rise.unibas.ch/en/) (RISE) group at the University of Basel. We are particularly interested in exploring the research opportunities, methodological risks, and technical challenges posed by retrieving and analysing data with LLMs. If you would like to collaborate with us in this area, please [get in touch](mailto:rise@unibas.ch).
 
