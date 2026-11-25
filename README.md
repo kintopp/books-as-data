@@ -8,7 +8,7 @@ A pilot [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server t
 
 ## Sample Research Scenarios
 
-The sample [research-scenarios](docs/research-scenarios.md) are multilingual prompts designed to test/demo the MCP server's capabilities, plus one example query drawing on the Books as Data CLI client. Alongside each prompt is a `demo` link to a previously saved response generated in Claude which you can consult to see how the server works in practice.
+The sample [research-scenarios](docs/research-scenarios.md) are multilingual prompts designed to test/demo the MCP server's capabilities, plus one example query that draws on the Books as Data CLI client. Alongside each prompt is a `demo` link to a previously saved response generated in Claude which you can consult to see how the server works in practice.
 
 ## Install
 
