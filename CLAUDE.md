@@ -149,7 +149,9 @@ walk, by `test/packaging.test.js`).
 catches that). `config.js` imports `SERVER_VERSION` from it; `build:mcpb` stamps it
 into the staged `manifest.json` (the repo's copy has no `version`) and `build:skill`
 into SKILL.md's `metadata.version`, source and zip alike, and into both plugin manifests — so a bump means re-running
-`npm run build:skill` and committing the result. `metadata.last_updated` moves on
+`npm run build:skill` and committing the result. `CITATION.cff` (`version`,
+`date-released`) and the README's APA/BibTeX citation are edited by hand on a bump;
+`test/version.test.js` checks their version, not the date. `metadata.last_updated` moves on
 every content edit, release or not, but not on the version stamp alone. Only spec
 fields go at the top level of the frontmatter.
 

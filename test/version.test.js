@@ -17,3 +17,13 @@ test('package-lock.json versions agree (top-level and root package entry)', () =
   assert.equal(lock.packages[''].version, SERVER_VERSION,
     'package-lock.json root package entry must match SERVER_VERSION');
 });
+
+// Neither `npm version` nor a build script touches these: edit them by hand on a bump.
+test('CITATION.cff and the README citation carry SERVER_VERSION', () => {
+  const text = (rel) => readFileSync(new URL(`../${rel}`, import.meta.url), 'utf8');
+  assert.match(text('CITATION.cff'), new RegExp(`^version: "${SERVER_VERSION.replaceAll('.', '\\.')}"$`, 'm'),
+    'CITATION.cff version must match SERVER_VERSION');
+  const readme = text('README.md');
+  assert.ok(readme.includes(`(Version ${SERVER_VERSION}) [Software]`), 'README APA citation must match SERVER_VERSION');
+  assert.ok(readme.includes(`version   = {${SERVER_VERSION}},`), 'README BibTeX citation must match SERVER_VERSION');
+});

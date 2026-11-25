@@ -2,34 +2,35 @@
 
 [![MCP Protocol](https://img.shields.io/badge/MCP_Protocol-2026--07--28-blue?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzIi8+PC9zdmc+)](https://modelcontextprotocol.io/specification/2026-07-28) [![MCP SDK](https://img.shields.io/badge/MCP_SDK-v2-blue?logo=npm&logoColor=white)](https://www.npmjs.com/package/@modelcontextprotocol/server)
 
-A pilot [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that permits LLM-assisted natural language search and exploration of [*Books as Data*](https://books-as-data.ch/en), the digitised-books platform of four Swiss libraries (UB Bern, UB Basel, ZHB Luzern and ZB Zürich), through its GraphQL API.
+A pilot [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that permits LLM-assisted natural language search and exploration of the [*Books as Data*](https://books-as-data.ch/en) platform of the UB Bern, the UB Basel, the ZHB Luzern and the ZB Zürich.
 
 > This MCP server was developed by the [Research and Infrastructure Support](https://rise.unibas.ch/en/) (RISE) group at the University of Basel. We are particularly interested in exploring the research opportunities, methodological risks, and technical challenges posed by retrieving and analysing data with LLMs. If you would like to collaborate with us in this area, please [get in touch](mailto:rise@unibas.ch).
 
-## Sample Research Scenarios
+## Research Scenarios
 
-The sample [research-scenarios](docs/research-scenarios.md) are multilingual prompts designed to test/demo the MCP server's capabilities, plus one example query that draws on the Books as Data CLI client. Alongside each prompt is a `demo` link to a previously saved response generated in Claude which you can consult to see how the server works in practice.
+The sample [research-scenarios](docs/research-scenarios.md) are multilingual prompts designed to test/demo the MCP server's capabilities, plus one example that draws on the CLI client. Alongside each prompt is a `demo` link to a previously saved response generated in Claude which you can review to see how well the server works in practice.
 
 ## Install
 
 ### Hosted (Streamable HTTP)
 
-The easiest way to start is to install the Books as Data plugin. It adds the hosted server as a connector, together with a short skill that tells the AI assistant how to use it. The server needs no account and no sign-in.
+The easiest way to start is to install the Books as Data plugin. It adds the hosted version of the server as a connector, together with a short skill that tells the AI assistant how to use it. The server needs no account or sign-in information.
 
-**Claude** ([claude.ai](https://claude.ai), or the Claude desktop app):
+**Claude** ([claude.ai](https://claude.ai), or the Claude [desktop app](https://claude.com/download)): *// recommended* 
 
 1. Download [`books-as-data-claude.zip`](https://github.com/kintopp/books-as-data/raw/refs/heads/main/plugin/books-as-data-claude.zip).
-2. In Claude, go to _Customize_ → _Plugins_ → _Add_ → _Upload plugin_ and choose the file.
+2. In Claude, go to *Settings* → _Plugins_ → *Browse plugins* (scroll down to the bottom) → *Add* → _Upload plugin_ and choose the file.
 3. Open the plugin, go to its _Connectors_ tab, and add the "Books-as-Data" connector.
 4. If you like, set the permissions for its tools in _Customize_ → _Connectors_, for example to "Always allow". All tools are read only.
 
-A free Claude account allows only one custom connector, and the plugin's connector counts as one. To make room for it, remove (not just disable) any other custom connector in _Customize_ → _Connectors_ first. Anthropic's [plugin instructions](https://claude.com/docs/plugins/overview#install-a-plugin) give more details.
+**N.B.** A free Claude account allows only one custom connector. To make room for it, you will need to remove (not just disable) any existing custom connector in _Customize_ → _Connectors_ first. Anthropic's [plugin instructions](https://claude.com/docs/plugins/overview#install-a-plugin) provides more details.
 
-**ChatGPT** (desktop app):
+**ChatGPT** ([desktop app](https://chatgpt.com/download/) – not chatgpt.com):
 
 1. Download [`books-as-data-chatgpt.zip`](https://github.com/kintopp/books-as-data/raw/refs/heads/main/plugin/books-as-data-chatgpt.zip).
-2. In the ChatGPT desktop app, go to _Settings_ → _Plugins_ → _Add_ and choose the file.
-3. If ChatGPT asks you to connect the plugin's app, select _Connect_. No sign-in is needed.
+2. In the ChatGPT desktop app, go to _Settings_ → _Plugins_ → _Add_ and *Upload uplugin archive*. Select and *Add* the plugin.
+3. Next select, *Install plugin*. After this the plugin is available. **N.B.** You can only use a custom plugin like Books as Data from the 'Work' mode in ChatGPT, not the 'Chat' mode.
+4. To use it, create a new chat, switch to 'Work' mode, and select the plugin via the + symbol. Else, type "@Books as Data" at the start of the prompt 
 
 **Other AI clients:** add the hosted server as a remote MCP server (often called a "custom connector") with this URL, and leave the authentication settings empty:
 
@@ -37,9 +38,7 @@ A free Claude account allows only one custom connector, and the plugin's connect
 https://books-as-data-test.up.railway.app/mcp
 ```
 
-See your client's own documentation for where to enter it.
-
-Every tool reads the public books-as-data.ch services. To host your own instance, see [docs/deploy.md](docs/deploy.md).
+See your client's own documentation for details. 
 
 ### Local (stdio)
 
@@ -119,9 +118,7 @@ See [tool descriptions and parameters](docs/tools.md) for the description of eac
 
 ## Skill file
 
-The research guidance (which tool to choose for a given question type, how to combine searches, important metadata distinctions, and known limitations) is served by the server itself through `sgbr_guide`, so every client always receives the current version.
-
-The plugins above already include the skill. On its own, the [skill](skill/) is optional: a `SKILL.md`, zipped in a `.skill` file (with a `.skill.zip` copy for clients and browsers that only accept `.zip`), that sends the model to `sgbr_guide`. If you installed an earlier version of the Books as Data skill, which held a full copy of the guidance, please uninstall it.
+The technical and research guidance (i.e. which tool to choose for a given question type, how to combine searches, important metadata distinctions, and known limitations) needed by the LLM to make best use of the MCP server is provided to the LLM by the `sgbr_guide`, so every client always receives the current version. 
 
 ## Architecture overview
 
@@ -273,10 +270,7 @@ npm run build:docs       # regenerate docs/tools.md's generated blocks from the 
 npm run inspector        # open the MCP Inspector against the server
 ```
 
-The offline suite stubs the backend by construction, so it can never catch the real one
-moving: run `npm run test:live` before a release and after any backend-host change. Editing
-`SKILL.md` means running `npm run build:skill` and committing the result (`SKILL.md`, `.skill` and its `.skill.zip` copy, and the plugin's skill copy and manifests) —
-nothing else regenerates them, and `test/skill.test.js` fails if they disagree.
+The offline suite stubs the backend by construction: run `npm run test:live` before a release and after any backend-host change. Editing `SKILL.md` means running `npm run build:skill` and committing the result (`SKILL.md`, `.skill` and its `.skill.zip` copy, and the plugin's skill copy and manifests) — nothing else regenerates them, and `test/skill.test.js` fails if they disagree.
 
 CI (GitHub Actions, `.github/workflows/ci.yml`) runs two jobs on Node 24. **`build`** does `npm ci`, `npm run lint`, the offline `npm test`, and `npm run build:mcpb`. **`pack`** does `npm run test:pack`, which packs the tarball, installs it into a temp dir with `--omit=dev`, and launches both shipped bins for real — kept a separate job because it must reach the npm registry, which the offline suite deliberately avoids. The live tests (`SGBR_LIVE=1`) hit the public production APIs and are intentionally not run in CI, pending the library's policy on MCP access to its endpoints.
 
@@ -321,7 +315,38 @@ test/                smoke.test.js (real stdio server) + offline unit tests
                       (compiler, record, facet, config, clients, …)
 ```
 
+## Citation
+
+If you use the Books as Data MCP server in your research, please cite it as follows:
+
+**APA (7th ed.)**
+
+> Bosse, A. (2026). *Books as Data MCP Server* (Version 0.30.2) [Software]. Research and Infrastructure Support (RISE), University of Basel. https://github.com/kintopp/books-as-data
+
+**BibTeX**
+```bibtex
+@software{bosse_2026_books_as_data_mcp,
+  author    = {Bosse, Arno},
+  title     = {{Books as Data MCP Server}},
+  year      = {2026},
+  version   = {0.30.2},
+  publisher = {Research and Infrastructure Support (RISE), University of Basel},
+  url       = {https://github.com/kintopp/books-as-data},
+  orcid     = {0000-0003-3681-1289},
+  note      = {Developed with Claude Code (Anthropic, \url{https://www.anthropic.com})}
+}
+```
+
+Cite the books and pages you report separately, as records of the [*Books as Data*](https://books-as-data.ch/en) platform. The platform asks that publications refer to its website or embed material through IIIF. `sgbr_get_record` returns a ready-to-use CSL-JSON citation, a viewer URL and the IIIF manifest for each record.
 
 ## License
 
-[MIT](./LICENSE) © 2026 University of Basel.
+[MIT](./LICENSE) © 2026 University of Basel. The licence covers the code, not the Books as Data records, scans and full texts it queries.
+
+Those are governed by the platform's [Terms of Use](https://books-as-data.ch/en/terms-of-use) and by the rights statement each record carries:
+
+- The scans and OCR texts from the collaboration with Google Books are under a contractual embargo and carry the rights statement [No Copyright – Non-Commercial Use Only](https://rightsstatements.org/page/NoC-NC/1.0/). During the embargo, the terms prohibit commercial use (academic publications excepted, if Google's images are not their main or sole content) and any redistribution, in whole or in part, including through public repositories or aggregators. The end of the embargo is noted on each digitised item.
+- Material from e-rara is marked with the [Public Domain Mark](https://creativecommons.org/publicdomain/mark/1.0/) and may be used without restriction.
+- Material from the Bavarian State Library and the Austrian National Library, integrated through IIIF, is subject to similar restrictions; its terms are linked from each item.
+
+For larger quantities of material for non-commercial research, the platform asks you to contact info@books-as-data.ch.
