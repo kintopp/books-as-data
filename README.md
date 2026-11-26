@@ -23,14 +23,16 @@ The easiest way to start is to install the Books as Data plugin. It adds the hos
 3. Open the plugin, go to its _Connectors_ tab, and add the "Books-as-Data" connector.
 4. If you like, set the permissions for its tools in _Customize_ → _Connectors_, for example to "Always allow". All tools are read only.
 
-**N.B.** A free Claude account allows only one custom connector. To make room for it, you will need to remove (not just disable) any existing custom connector in _Customize_ → _Connectors_ first. Anthropic's [plugin instructions](https://claude.com/docs/plugins/overview#install-a-plugin) provides more details.
+**N.B.** A free Claude account allows only one custom connector. To make room for it, you will need to remove (not just disable) any existing custom connector in _Customize_ → _Connectors_ first. Anthropic's [plugin instructions](https://claude.com/docs/plugins/overview#install-a-plugin) provides more details. If you added Books as Data as a custom connector before, remove it before you install the plugin, so the assistant does not see the tools twice.
 
 **ChatGPT** ([desktop app](https://chatgpt.com/download/) – not chatgpt.com):
 
 1. Download [`books-as-data-chatgpt.zip`](https://github.com/kintopp/books-as-data/raw/refs/heads/main/plugin/books-as-data-chatgpt.zip).
 2. In the ChatGPT desktop app, go to _Settings_ → _Plugins_ → _Add_ and *Upload plugin archive*. Select and *Add* the plugin.
 3. Next select, *Install plugin*. After this the plugin is available. 
-4. To use it, create a new chat, switch to 'Work' mode, and select the plugin via the + symbol. Else, type "@Books as Data" at the start of the prompt 
+4. To use it, create a new chat, switch to 'Work' mode, and select the plugin via the + symbol. Else, type "@Books as Data" at the start of the prompt.
+
+This works on a free ChatGPT plan, in the desktop app's 'Work' and Codex modes.
 
 **Other AI clients:** add the hosted server as a remote MCP server (often called a "custom connector") with this URL, and leave the authentication settings empty:
 
@@ -38,7 +40,7 @@ The easiest way to start is to install the Books as Data plugin. It adds the hos
 https://books-as-data-test.up.railway.app/mcp
 ```
 
-See your client's own documentation for details. 
+See your client's own documentation for details. On chatgpt.com, custom connectors are not available on the free plan: full MCP access needs a Business or Enterprise/Edu plan, and Pro allows only read/fetch ([OpenAI Help](https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt)). Free users should use the plugin in the desktop app instead.
 
 ### Local
 
