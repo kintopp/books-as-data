@@ -29,7 +29,7 @@ The easiest way to start is to install the Books as Data plugin. It adds the hos
 
 1. Download [`books-as-data-chatgpt.zip`](https://github.com/kintopp/books-as-data/raw/refs/heads/main/plugin/books-as-data-chatgpt.zip).
 2. In the ChatGPT desktop app, go to _Settings_ → _Plugins_ → _Add_ and *Upload uplugin archive*. Select and *Add* the plugin.
-3. Next select, *Install plugin*. After this the plugin is available. **N.B.** You can only use a custom plugin like Books as Data from the 'Work' mode in ChatGPT, not the 'Chat' mode.
+3. Next select, *Install plugin*. After this the plugin is available. 
 4. To use it, create a new chat, switch to 'Work' mode, and select the plugin via the + symbol. Else, type "@Books as Data" at the start of the prompt 
 
 **Other AI clients:** add the hosted server as a remote MCP server (often called a "custom connector") with this URL, and leave the authentication settings empty:
