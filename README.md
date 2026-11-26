@@ -28,7 +28,7 @@ The easiest way to start is to install the Books as Data plugin. It adds the hos
 **ChatGPT** ([desktop app](https://chatgpt.com/download/) – not chatgpt.com):
 
 1. Download [`books-as-data-chatgpt.zip`](https://github.com/kintopp/books-as-data/raw/refs/heads/main/plugin/books-as-data-chatgpt.zip).
-2. In the ChatGPT desktop app, go to _Settings_ → _Plugins_ → _Add_ and *Upload uplugin archive*. Select and *Add* the plugin.
+2. In the ChatGPT desktop app, go to _Settings_ → _Plugins_ → _Add_ and *Upload plugin archive*. Select and *Add* the plugin.
 3. Next select, *Install plugin*. After this the plugin is available. 
 4. To use it, create a new chat, switch to 'Work' mode, and select the plugin via the + symbol. Else, type "@Books as Data" at the start of the prompt 
 
