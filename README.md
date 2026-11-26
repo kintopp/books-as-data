@@ -12,7 +12,7 @@ The sample [research-scenarios](docs/research-scenarios.md) are multilingual pro
 
 ## Install
 
-### Hosted (Streamable HTTP)
+### Hosted
 
 The easiest way to start is to install the Books as Data plugin. It adds the hosted version of the server as a connector, together with a short skill that tells the AI assistant how to use it. The server needs no account or sign-in information.
 
@@ -40,7 +40,7 @@ https://books-as-data-test.up.railway.app/mcp
 
 See your client's own documentation for details. 
 
-### Local (stdio)
+### Local
 
 Requirements: Node.js ≥ 24.22.1 < 25 (no native dependencies).
 
