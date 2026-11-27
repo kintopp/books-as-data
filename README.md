@@ -14,7 +14,7 @@ The sample [research-scenarios](docs/research-scenarios.md) are multilingual pro
 
 ### Hosted
 
-The easiest way to start is to install the Books as Data plugin. It adds the hosted version of the server as a connector, together with a short skill that tells the AI assistant how to use it. The server needs no account or sign-in information.
+The easiest way to start is to install the Books as Data plugin. It adds the hosted version of the server as a connector, together with a short skill that tells the AI assistant how to use it. The server needs no account or sign-in information. Note: If you are on a free subscription plan, the use of any MCP server will consume your free usage quickly.
 
 **Claude** ([claude.ai](https://claude.ai), or the Claude [desktop app](https://claude.com/download)): *// recommended* 
 
@@ -23,21 +23,21 @@ The easiest way to start is to install the Books as Data plugin. It adds the hos
 3. Open the plugin, go to its _Connectors_ tab, and add the "Books-as-Data" connector.
 4. If you like, set the permissions for its tools in _Customize_ → _Connectors_, for example to "Always allow". All tools are read only.
 
-**N.B.** A free Claude account allows only one custom connector. To make room for it, you will need to remove (not just disable) any existing custom connector in _Customize_ → _Connectors_ first. Anthropic's [plugin instructions](https://claude.com/docs/plugins/overview#install-a-plugin) provides more details. If you added Books as Data as a custom connector before, remove it before you install the plugin, so the assistant does not see the tools twice. In addition, the use of any MCP server will consume your free usage quickly.
+**N.B.** A free Claude account allows only one custom connector. To make room for it, you will need to remove (not just disable) any existing custom connector in _Customize_ → _Connectors_ first. Anthropic's [plugin instructions](https://claude.com/docs/plugins/overview#install-a-plugin) provides more details. If you added Books as Data as a custom connector before, remove it before you install the plugin, so the assistant does not see the tools twice. 
 
 **ChatGPT** ([desktop app](https://chatgpt.com/download/) – not chatgpt.com):
 
 1. Download [`books-as-data-chatgpt.zip`](https://github.com/kintopp/books-as-data/raw/refs/heads/main/plugin/books-as-data-chatgpt.zip).
 2. In the ChatGPT desktop app, go to _Settings_ → _Plugins_ → _Add_ and *Upload plugin archive*. Select and *Add* the plugin.
 3. Next select, *Install plugin*. After this the plugin is available. 
-4. To use it, create a new chat, switch to ChatGPT 'Work' mode or Codex, and select the plugin via the + symbol. Else, type "@Books as Data" at the start of the prompt. Note: The use of any MCP server will consume your free usage quickly.
+4. To use it, create a new chat, switch to ChatGPT 'Work' mode or Codex, and select the plugin via the + symbol. Else, type "@Books as Data" at the start of the prompt. 
 
 **Other AI clients:** add the hosted server as a remote MCP server (often called a "custom connector") with this URL, and leave the authentication settings empty:
 
 ```
 https://books-as-data-test.up.railway.app/mcp
 ```
-For example, the free version of [Mistral's Vibe](https://chat.mistral.ai) has excellent support for MCP servers, including components like interactive image viewers. The use of an MCP server will consume your free usage quickly. But it's certainly also possible to set-up an open source AI client with an open source model, such as [Kimi 3.1 Pro](https://huggingface.co/moonshotai/Kimi-K3.1-Pro) which may be available to you at no cost or on a per-token basis.
+For example, the free version of [Mistral's Vibe](https://chat.mistral.ai) has excellent support for MCP servers, including components like interactive image viewers.
 
 ### Local
 
